@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>WebXR Application</title>
+        <link rel="icon" type="image/png" href="favicon.ico"/>
+        <meta name="description" content="3D Application">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.0/dist/aframe-extras.min.js"></script>
+        <script type="text/javascript" src="js/webxr.js"></script>
+        <script type="text/javascript" src="js/joystick.js"></script>
+        <script type="text/javascript" src="js/camera-cube-env.js"></script>
+        
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body onload="init();">
+        <a-scene   shadow="type: basic; autoUpdate: false;"
+        renderer="antialias: true;
+                   colorManagement: true;
+                   sortObjects: true;
+                   physicallyCorrectLights: true;
+                   maxCanvasWidth: 1920;
+                   maxCanvasHeight: 1920;">
+            <!-- Assets -->
+            <a-assets>
+				<a-asset-item id="AutoBoolean" src="./assets/AutoBoolean.gltf"></a-asset-item>
+				<a-asset-item id="hole" src="./assets/hole.gltf"></a-asset-item>
+				<a-asset-item id="Plane" src="./assets/Plane.gltf"></a-asset-item>
+				<a-asset-item id="Plane.001" src="./assets/Plane.001.gltf"></a-asset-item>
+				<a-asset-item id="Reference.001" src="./assets/Reference.001.gltf"></a-asset-item>
+				<a-asset-item id="Slab" src="./assets/Slab.gltf"></a-asset-item>
+				<a-asset-item id="Slab.001" src="./assets/Slab.001.gltf"></a-asset-item>
+				<a-asset-item id="Wall" src="./assets/Wall.gltf"></a-asset-item>
+				<a-asset-item id="Wall.001" src="./assets/Wall.001.gltf"></a-asset-item>
+				<a-asset-item id="Wall.002" src="./assets/Wall.002.gltf"></a-asset-item>
+				<a-asset-item id="Window" src="./assets/Window.gltf"></a-asset-item>
+				<a-asset-item id="Window Panel.001" src="./assets/Window Panel.001.gltf"></a-asset-item>
+                <img id="sky"                 src="./resources/sky.jpg">
+                <img id="icon-play"           src="./resources/play.png">
+                <img id="icon-pause"          src="./resources/pause.png">
+                <img id="icon-play-skip-back" src="./resources/play-skip-back.png">
+                <img id="icon-mute"           src="./resources/mute.png">
+                <img id="icon-volume-low"     src="./resources/volume-low.png">
+                <img id="icon-volume-high"    src="./resources/volume-high.png">
+            </a-assets>
+
+            <!-- Entities -->
+            
+			<a-entity id="#AutoBoolean"  gltf-model="#AutoBoolean" scale="1 1 1" position="0.0 0.0 -0.0" visible="true" shadow="cast: false" ></a-entity>
+			<a-entity id="#hole"  gltf-model="#hole" scale="1 1 1" position="-3.599705457687378 0.0 -0.09999895840883255" visible="true" shadow="cast: false" ></a-entity>
+			<a-entity id="#Plane"  gltf-model="#Plane" scale="1 1 1" position="-5.797506809234619 1.3389699459075928 -2.1014091968536377" visible="true" shadow="cast: false" ></a-entity>
+			<a-entity id="#Plane.001"  gltf-model="#Plane.001" scale="1 1 1" position="-3.7476789951324463 0.8527289628982544 2.2485170364379883" visible="true" shadow="cast: false" ></a-entity>
+			<a-entity id="#Reference.001"  gltf-model="#Reference.001" scale="1 1 1" position="-5.89766788482666 0.19750000536441803 -0.10228428244590759" visible="true" shadow="cast: false" ></a-entity>
+			<a-entity id="#Slab"  gltf-model="#Slab" scale="1 1 1" position="-3.000000476837158 -0.05000000074505806 -3.9999992847442627" visible="true" shadow="cast: false" ></a-entity>
+			<a-entity id="#Slab.001"  gltf-model="#Slab.001" scale="1 1 1" position="-3.000000238418579 2.651383399963379 -2.1982882022857666" visible="true" shadow="cast: false" ></a-entity>
+			<a-entity id="#Wall"  gltf-model="#Wall" scale="1 1 1" position="-3.0000014305114746 1.350000023841858 -4.086686611175537" visible="true" shadow="cast: false" ></a-entity>
+			<a-entity id="#Wall.001"  gltf-model="#Wall.001" scale="1 1 1" position="-3.5887584686279297 1.2655556201934814 -2.2666659355163574" visible="true" shadow="cast: false" ></a-entity>
+			<a-entity id="#Wall.002"  gltf-model="#Wall.002" scale="1 1 1" position="-5.80000114440918 1.350000023841858 -5.899998664855957" visible="true" shadow="cast: false" ></a-entity>
+			<a-entity id="#Window"  gltf-model="#Window" scale="1 1 1" position="-3.599705457687378 0.6152727007865906 -0.11927168071269989" visible="true" shadow="cast: false" ></a-entity>
+			<a-entity id="#Window Panel.001"  gltf-model="#Window Panel.001" scale="1 1 1" position="-3.599705696105957 1.1449999809265137 -0.15999895334243774" visible="true" shadow="cast: false" ></a-entity>
+
+            <!-- Camera -->
+            <a-entity id="player" 
+                position="0 -0.2 0" 
+                movement-controls="speed: 0.10000000149011612;">
+                <a-entity id="camera" 
+                    camera="near: 0.001" 
+                    fov="20"
+                    zoom="0.6"
+                    position="0 1.7000000476837158 0" 
+                    look-controls="pointerLockEnabled: true">
+                        <a-entity id="cursor" cursor="fuse: false;" animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 50; from: 	0.1 0.1 0.1; to: 1 1 1"
+                            position="0 0 -0.1"
+                            geometry="primitive: circle; radius: 0.001;"
+                            material="color: #CCC; shader: flat;"
+                            >
+                        </a-entity>
+                </a-entity>
+                    <a-entity id="leftHand" oculus-touch-controls="hand: left" vive-controls="hand: left"></a-entity>
+					<a-entity id="rightHand" laser-controls oculus-touch-controls="hand: right" vive-controls="hand: right" ></a-entity>
+            </a-entity>
+
+            <!-- Lights -->
+            <a-entity light="intensity: 1.0; castShadow: false; shadowBias: -0.001; shadowCameraFar: 501.02; shadowCameraBottom: 12; shadowCameraFov: 101.79; shadowCameraNear: 0; shadowCameraTop: -5; shadowCameraRight: 10; shadowCameraLeft: -10; shadowRadius: 2" position="1.36586 7.17965 1"></a-entity>
+            <a-entity light="type: ambient; intensity: 1.0"></a-entity>
+
+            <!-- Sky -->
+            <a-sky color="#ECECEC"></a-sky>
+        </a-scene>
+    </body>
+</html>
+
