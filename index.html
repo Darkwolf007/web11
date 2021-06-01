@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
     <head>
-        <title>WebXR Application</title>
+        <title>Xbuild</title>
         <link rel="icon" type="image/png" href="favicon.ico"/>
         <meta name="description" content="3D Application">
         <meta charset="utf-8">
@@ -63,13 +63,13 @@
 
             <!-- Camera -->
             <a-entity id="player" 
-                position="0 -0.2 0" 
+                position="-1 0 -1" 
                 movement-controls="speed: 0.10000000149011612;">
                 <a-entity id="camera" 
                     camera="near: 0.001" 
                     fov="20"
                     zoom="0.6"
-                    position="0 1.7000000476837158 0" 
+                    position="0 1.6 0" 
                     look-controls="pointerLockEnabled: true">
                         <a-entity id="cursor" cursor="fuse: false;" animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 50; from: 	0.1 0.1 0.1; to: 1 1 1"
                             position="0 0 -0.1"
