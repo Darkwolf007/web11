@@ -12,6 +12,9 @@
         <script type="text/javascript" src="js/webxr.js"></script>
         <script type="text/javascript" src="js/joystick.js"></script>
         <script type="text/javascript" src="js/camera-cube-env.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v$npm_package_version/dist/aframe-physics-system.min.js"></script>
+        <script src="//cdn.rawgit.com/donmccurdy/aframe-extras/v5.0.0/dist/aframe-extras.min.js"></script>
+
         
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
@@ -22,7 +25,9 @@
                    sortObjects: true;
                    physicallyCorrectLights: true;
                    maxCanvasWidth: 1920;
-                   maxCanvasHeight: 1920;">
+                   maxCanvasHeight: 1920;"
+                   physics="debug: true">
+                   <!-- added physicsdebug -->
             <!-- Assets -->
             <a-assets>
 				<a-asset-item id="AutoBoolean" src="./assets/AutoBoolean.gltf"></a-asset-item>
@@ -55,22 +60,25 @@
 			<a-entity id="#Reference.001"  gltf-model="#Reference.001" scale="1 1 1" position="-5.89766788482666 0.19750000536441803 -0.10228428244590759" visible="true" shadow="cast: false" ></a-entity>
 			<a-entity id="#Slab"  gltf-model="#Slab" scale="1 1 1" position="-3.000000476837158 -0.05000000074505806 -3.9999992847442627" visible="true" shadow="cast: false" ></a-entity>
 			<a-entity id="#Slab.001"  gltf-model="#Slab.001" scale="1 1 1" position="-3.000000238418579 2.651383399963379 -2.1982882022857666" visible="true" shadow="cast: false" ></a-entity>
-			<a-entity id="#Wall"  gltf-model="#Wall" scale="1 1 1" position="-3.0000014305114746 1.350000023841858 -4.086686611175537" visible="true" shadow="cast: false" ></a-entity>
-			<a-entity id="#Wall.001"  gltf-model="#Wall.001" scale="1 1 1" position="-3.5887584686279297 1.2655556201934814 -2.2666659355163574" visible="true" shadow="cast: false" ></a-entity>
-			<a-entity id="#Wall.002"  gltf-model="#Wall.002" scale="1 1 1" position="-5.80000114440918 1.350000023841858 -5.899998664855957" visible="true" shadow="cast: false" ></a-entity>
+            <!-- added staticmodel -->
+			<a-entity id="#Wall"  gltf-model="#Wall" scale="1 1 1" position="-3.0000014305114746 1.350000023841858 -4.086686611175537" visible="true" shadow="cast: false" static-body ></a-entity>
+			<a-entity id="#Wall.001"  gltf-model="#Wall.001" scale="1 1 1" position="-3.5887584686279297 1.2655556201934814 -2.2666659355163574" visible="true" shadow="cast: false" static-body></a-entity>
+			<a-entity id="#Wall.002"  gltf-model="#Wall.002" scale="1 1 1" position="-5.80000114440918 1.350000023841858 -5.899998664855957" visible="true" shadow="cast: false" static-body></a-entity>
 			<a-entity id="#Window"  gltf-model="#Window" scale="1 1 1" position="-3.599705457687378 0.6152727007865906 -0.11927168071269989" visible="true" shadow="cast: false" ></a-entity>
 			<a-entity id="#Window Panel.001"  gltf-model="#Window Panel.001" scale="1 1 1" position="-3.599705696105957 1.1449999809265137 -0.15999895334243774" visible="true" shadow="cast: false" ></a-entity>
 
             <!-- Camera -->
             <a-entity id="player" 
                 position="-1 0 -1" 
-                movement-controls="speed: 0.10000000149011612;">
+                movement-controls="speed: 0.10000000149011612;"
+                dynamic-body>
                 <a-entity id="camera" 
                     camera="near: 0.001" 
                     fov="20"
                     zoom="0.6"
                     position="0 1.6 0" 
-                    look-controls="pointerLockEnabled: true">
+                    look-controls="pointerLockEnabled: true"
+                    dynamic-body>
                         <a-entity id="cursor" cursor="fuse: false;" animation__click="property: scale; startEvents: click; easing: easeInCubic; dur: 50; from: 	0.1 0.1 0.1; to: 1 1 1"
                             position="0 0 -0.1"
                             geometry="primitive: circle; radius: 0.001;"
